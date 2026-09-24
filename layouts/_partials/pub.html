@@ -1,0 +1,26 @@
+{{/* One citation. Lab members (anyone with a People page) are bolded. */}}
+{{ $members := slice }}
+{{ with site.GetPage "/people" }}{{ range .Pages }}{{ $members = $members | append .Title }}{{ end }}{{ end }}
+{{ $url := "" }}
+{{ with .Params.doi }}{{ $url = printf "https://doi.org/%s" . }}{{ end }}
+{{ with .Params.url }}{{ $url = . }}{{ end }}
+<li class="pub">
+  <p class="pub__authors">
+    {{- range $i, $a := .Params.authors -}}
+      {{- if $i }}, {{ end -}}
+      {{- if in $members $a }}<strong>{{ $a }}</strong>{{ else }}{{ $a }}{{ end -}}
+    {{- end }} ({{ .Date.Year }})
+  </p>
+  <p class="pub__title">{{ if $url }}<a href="{{ $url }}">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}</p>
+  <p class="pub__venue">{{ .Params.publication | markdownify }}</p>
+  <p class="pub__meta">
+    {{ if in .Params.publication_types "chapter" }}<span class="chip">Book chapter</span>{{ end }}
+    {{ range .Params.research }}
+      {{ with site.GetPage (printf "/research/%s" .) }}<a class="chip chip--link" href="{{ .RelPermalink }}">{{ .Params.short | default .Title }}</a>{{ end }}
+    {{ end }}
+    {{ with .Params.doi }}<a class="chip chip--link" href="https://doi.org/{{ . }}">DOI</a>{{ end }}
+  </p>
+  {{ with .Params.abstract }}
+    <details class="pub__abstract"><summary>Abstract</summary><p>{{ . }}</p></details>
+  {{ end }}
+</li>

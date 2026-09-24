@@ -1,0 +1,6 @@
+<div class="page-header">
+  <div class="wrap">
+    <h1 class="logo-type{{ if gt (len .Title) 36 }} logo-type--long{{ end }}">{{ .Title }}</h1>
+  </div>
+</div>
+{{ with .Description }}<div class="wrap"><p class="lede">{{ . | markdownify }}</p></div>{{ end }}

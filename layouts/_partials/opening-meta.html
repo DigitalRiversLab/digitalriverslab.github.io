@@ -1,0 +1,5 @@
+<p class="opening-meta">
+  {{ with .Params.position }}<span class="chip">{{ . }}</span>{{ end }}
+  {{ with .Params.start }}<span class="chip">Starts {{ . }}</span>{{ end }}
+  <span class="chip">{{ with .Params.deadline }}Apply by {{ (time.AsTime .).Format "January 2, 2006" }}{{ else }}Open until filled{{ end }}</span>
+</p>

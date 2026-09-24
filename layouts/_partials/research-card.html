@@ -1,0 +1,10 @@
+{{ $img := .Resources.GetMatch "featured.*" }}
+<article class="card research-card">
+  <a class="research-card__media{{ if eq .Params.image_fit "contain" }} is-contain{{ end }}" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
+    {{ with $img }}{{ partial "img.html" (dict "img" . "width" 720 "alt" "") }}{{ end }}
+  </a>
+  <div class="card__body">
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <p>{{ .Summary | plainify }}</p>
+  </div>
+</article>

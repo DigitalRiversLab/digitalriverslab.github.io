@@ -1,0 +1,7 @@
+<article class="card opening-card" id="opening-{{ .File.ContentBaseName }}">
+  <span class="opening-card__flag">Open position</span>
+  <h3>{{ .Title }}</h3>
+  {{ partial "opening-meta.html" . }}
+  <div class="prose">{{ .Content }}</div>
+  {{ with .Params.link }}<a class="btn btn--small" href="{{ . }}">Full posting →</a>{{ end }}
+</article>

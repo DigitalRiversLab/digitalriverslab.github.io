@@ -1,0 +1,18 @@
+{{ define "main" }}
+{{ partial "page-header.html" . }}
+<div class="wrap page-body">
+  {{ range .Pages.ByWeight }}
+    {{ $img := .Resources.GetMatch "featured.*" }}
+    <article class="research-row">
+      <a class="research-row__media card{{ if eq .Params.image_fit "contain" }} is-contain{{ end }}" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
+        {{ with $img }}{{ partial "img.html" (dict "img" . "width" 900 "alt" "") }}{{ end }}
+      </a>
+      <div>
+        <h2 class="research-row__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p class="prose prose--large">{{ .Summary | plainify }}</p>
+        <a class="more" href="{{ .RelPermalink }}">Read more →</a>
+      </div>
+    </article>
+  {{ end }}
+</div>
+{{ end }}

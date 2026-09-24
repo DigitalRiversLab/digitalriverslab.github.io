@@ -1,0 +1,11 @@
+{{/* Responsive image. GIFs pass through untouched so animation is kept. */}}
+{{ $img := .img }}
+{{ $alt := .alt | default "" }}
+{{ if eq $img.MediaType.SubType "gif" }}
+  <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ $alt }}" loading="lazy">
+{{ else }}
+  {{ $w := .width | default 900 }}
+  {{ $r := $img }}
+  {{ if gt $img.Width $w }}{{ $r = $img.Resize (printf "%dx webp" $w) }}{{ else }}{{ $r = $img.Process "webp" }}{{ end }}
+  <img src="{{ $r.RelPermalink }}" width="{{ $r.Width }}" height="{{ $r.Height }}" alt="{{ $alt }}" loading="lazy">
+{{ end }}

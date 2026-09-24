@@ -1,0 +1,18 @@
+{{ define "main" }}
+{{ partial "page-header.html" . }}
+<div class="wrap page-body">
+  {{ $people := .Pages }}
+  {{ range $group := .Params.groups }}
+    {{ $members := where $people "Params.group" $group }}
+    {{ with $members }}
+      <section class="people-group">
+        <h2 class="section-title">{{ $group }}</h2>
+        <div class="people-grid">
+          {{ range .ByWeight }}{{ partial "person-card.html" . }}{{ end }}
+        </div>
+      </section>
+    {{ end }}
+  {{ end }}
+  <p class="people-cta"><a href="{{ "join/" | relURL }}">Interested in joining the lab?</a></p>
+</div>
+{{ end }}

@@ -1,0 +1,5 @@
+<li class="news-item">
+  <time class="label" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  <p>{{ .Summary | plainify | truncate 220 }}</p>
+</li>

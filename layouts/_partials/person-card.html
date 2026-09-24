@@ -1,0 +1,11 @@
+{{ $photo := .Resources.GetMatch "avatar.*" }}
+<a class="person-card" href="{{ .RelPermalink }}">
+  {{ with $photo }}
+    {{ $p := .Fill "320x320 webp Center" }}
+    <img src="{{ $p.RelPermalink }}" width="160" height="160" alt="">
+  {{ else }}
+    <span class="person-card__initials" aria-hidden="true">{{ substr .Title 0 1 }}</span>
+  {{ end }}
+  <span class="person-card__name">{{ .Title }}</span>
+  {{ with .Params.role }}<span class="person-card__role">{{ . }}</span>{{ end }}
+</a>

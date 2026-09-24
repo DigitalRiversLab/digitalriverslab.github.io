@@ -1,0 +1,19 @@
+{{ define "main" }}
+{{ partial "page-header.html" (dict "Title" .Title "Description" .Summary) }}
+{{ $img := .Resources.GetMatch "featured.*" }}
+{{ $slug := path.Base .File.Dir }}
+<div class="wrap page-body">
+  {{ with $img }}
+    <figure class="card figure{{ if eq $.Params.image_fit "contain" }} is-contain{{ end }}">
+      {{ partial "img.html" (dict "img" . "width" 1400 "alt" ($.Params.image_alt | default "")) }}
+    </figure>
+  {{ end }}
+  <div class="prose">{{ .Content }}</div>
+
+  {{ $pubs := where (site.GetPage "/publications").Pages "Params.research" "intersect" (slice $slug) }}
+  {{ with $pubs }}
+    <h2 class="section-title">Related publications</h2>
+    <ul class="pub-list">{{ range .ByDate.Reverse }}{{ partial "pub.html" . }}{{ end }}</ul>
+  {{ end }}
+</div>
+{{ end }}

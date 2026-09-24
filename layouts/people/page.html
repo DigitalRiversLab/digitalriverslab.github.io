@@ -1,0 +1,33 @@
+{{ define "main" }}
+{{ partial "page-header.html" . }}
+{{ $photo := .Resources.GetMatch "avatar.*" }}
+<div class="wrap page-body profile">
+  <aside class="card profile__card">
+    {{ with $photo }}
+      {{ $p := .Fill "480x480 webp Center" }}
+      <img class="profile__photo" src="{{ $p.RelPermalink }}" width="240" height="240" alt="Photo of {{ $.Title }}">
+    {{ end }}
+    {{ with .Params.role }}<p class="profile__role">{{ . }}</p>{{ end }}
+    {{ with .Params.affiliations }}
+      <ul class="profile__affil">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+    {{ end }}
+    <div class="profile__links">
+      {{ with .Params.email }}<a class="btn btn--small" href="mailto:{{ . }}">Email</a>{{ end }}
+      {{ range .Params.links }}<a class="btn btn--small" href="{{ .url }}">{{ .name }}</a>{{ end }}
+    </div>
+    {{ with .Params.education }}
+      <h2 class="label">Education</h2>
+      <ul class="profile__edu">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+    {{ end }}
+  </aside>
+  <div>
+    <div class="prose">{{ .Content }}</div>
+    {{ $name := .Title }}
+    {{ $pubs := where (site.GetPage "/publications").Pages "Params.authors" "intersect" (slice $name) }}
+    {{ with $pubs }}
+      <h2 class="section-title">Publications</h2>
+      <ul class="pub-list">{{ range .ByDate.Reverse }}{{ partial "pub.html" . }}{{ end }}</ul>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

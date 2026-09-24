@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{ partial "page-header.html" . }}
+{{/* Text above <!--more--> in content/join/index.md goes before the opening cards; the rest after. */}}
+{{ $split := strings.Contains .RawContent "<!--more-->" }}
+<div class="wrap page-body">
+  {{ if $split }}<div class="prose join-intro">{{ .Summary }}</div>{{ end }}
+  {{ with (site.GetPage "/openings").Pages.ByDate.Reverse }}
+    <section class="openings">
+      <h2 class="section-title">Current openings</h2>
+      <div class="openings-grid">
+        {{ range . }}{{ partial "opening-card.html" . }}{{ end }}
+      </div>
+    </section>
+  {{ end }}
+  <div class="prose">{{ if $split }}{{ .ContentWithoutSummary }}{{ else }}{{ .Content }}{{ end }}</div>
+</div>
+{{ end }}

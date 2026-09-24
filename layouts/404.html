@@ -1,0 +1,6 @@
+{{ define "main" }}
+{{ partial "page-header.html" (dict "Title" "Page not found") }}
+<div class="wrap page-body prose">
+  <p>We could not find that page. Return to the <a href="{{ "/" | relURL }}">homepage</a>.</p>
+</div>
+{{ end }}

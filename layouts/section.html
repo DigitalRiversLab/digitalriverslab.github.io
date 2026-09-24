@@ -1,0 +1,9 @@
+{{ define "main" }}
+{{ partial "page-header.html" . }}
+<div class="wrap page-body">
+  {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  <ul class="news-list">
+    {{ range .Pages.ByDate.Reverse }}{{ partial "news-item.html" . }}{{ end }}
+  </ul>
+</div>
+{{ end }}

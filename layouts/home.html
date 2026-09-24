@@ -1,0 +1,63 @@
+{{ define "main" }}
+<h1 class="visually-hidden">{{ site.Title }}, {{ site.Params.institution }}</h1>
+<div class="banner" role="img" aria-label="Pixel-art banner: Digital Rivers, Lab @ Wyoming, over a meandering river running through a forested valley"></div>
+
+<section class="wrap intro">
+  <div class="prose prose--large">{{ .Content }}</div>
+</section>
+
+<section class="section section--tint">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section-title">Research</h2>
+      <a class="more" href="{{ "research/" | relURL }}">All research →</a>
+    </div>
+    <div class="card-grid">
+      {{ range (site.GetPage "/research").Pages.ByWeight }}{{ partial "research-card.html" . }}{{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap two-col">
+    <div>
+      <div class="section__head">
+        <h2 class="section-title">News</h2>
+        <a class="more" href="{{ "news/" | relURL }}">All news →</a>
+      </div>
+      <ul class="news-list">
+        {{ range first 3 (site.GetPage "/news").Pages.ByDate.Reverse }}{{ partial "news-item.html" . }}{{ end }}
+      </ul>
+    </div>
+    <div>
+      <div class="section__head">
+        <h2 class="section-title">Recent publications</h2>
+        <a class="more" href="{{ "publications/" | relURL }}">All publications →</a>
+      </div>
+      <ul class="pub-list pub-list--compact">
+        {{ range first 4 (site.GetPage "/publications").Pages.ByDate.Reverse }}{{ partial "pub.html" . }}{{ end }}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{{ with .Params.join }}
+  {{ $bg := resources.Get .image }}
+  {{ $bg = $bg.Resize "1800x webp q75" }}
+  <section class="join-band" style="--join-bg: url('{{ $bg.RelPermalink }}')">
+    <div class="wrap">
+      <div class="join-band__panel">
+        <h2 class="section-title">{{ .title }}</h2>
+        <p>{{ .text }}</p>
+        {{ with (site.GetPage "/openings").Pages.ByDate.Reverse }}
+          <p class="label">Open positions</p>
+          <ul class="join-band__openings">
+            {{ range . }}<li><a href="{{ "join/" | relURL }}#opening-{{ .File.ContentBaseName }}">{{ .Title }}</a></li>{{ end }}
+          </ul>
+        {{ end }}
+        <a class="btn" href="{{ "join/" | relURL }}">How to join →</a>
+      </div>
+    </div>
+  </section>
+{{ end }}
+{{ end }}

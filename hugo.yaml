@@ -1,0 +1,49 @@
+baseURL: https://digitalriverslab.github.io/
+title: Digital Rivers Lab
+locale: en-us
+enableRobotsTXT: true
+
+outputs:
+  home: [HTML, RSS]
+  section: [HTML]
+
+taxonomies: {}
+
+imaging:
+  jpeg:
+    quality: 82
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true # allow inline HTML in Markdown
+
+menus:
+  main:
+    - name: Research
+      pageRef: /research
+      weight: 10
+    - name: People
+      pageRef: /people
+      weight: 20
+    - name: Publications
+      pageRef: /publications
+      weight: 30
+    - name: News
+      pageRef: /news
+      weight: 40
+    - name: Join
+      pageRef: /join
+      weight: 50
+
+params:
+  description: Remote sensing, open-source sensors, and deep learning for rivers and lakes, at the University of Wyoming.
+  institution: University of Wyoming
+  departments:
+    - name: School of Computing
+      url: https://www.uwyo.edu/computing/
+    - name: Department of Geology & Geophysics
+      url: https://www.uwyo.edu/geolgeophys/
+  location: Laramie, Wyoming
+  email: ted.langhorst@uwyo.edu # TODO: confirm UWyo address
+  github: https://github.com/DigitalRiversLab

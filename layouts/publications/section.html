@@ -1,0 +1,12 @@
+{{ define "main" }}
+{{ partial "page-header.html" . }}
+<div class="wrap page-body">
+  {{ with .Params.scholar }}<p><a class="btn btn--small" href="{{ . }}">Google Scholar profile</a></p>{{ end }}
+  {{ range .Pages.GroupByDate "2006" }}
+    <section class="pub-year">
+      <h2 class="pub-year__label">{{ .Key }}</h2>
+      <ul class="pub-list">{{ range .Pages }}{{ partial "pub.html" . }}{{ end }}</ul>
+    </section>
+  {{ end }}
+</div>
+{{ end }}
