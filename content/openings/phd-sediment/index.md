@@ -1,5 +1,5 @@
 ---
-title: "PhD opportunity"
+title: "MS/PhD opportunity"
 date: 2026-09-24T10:52:09-06:00
 deadline: 2027-01-15
 ---
