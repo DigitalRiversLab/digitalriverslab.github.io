@@ -13,7 +13,8 @@
   --sky: #92bede;
   --forest: #29432d;
 
-  --pixel: "Pixelify Sans", ui-monospace, monospace;
+  --pixel: "Doto", ui-monospace, monospace;
+  --title: "Jersey 10", ui-monospace, monospace;
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
 
   --wrap: 1120px;
@@ -53,32 +54,40 @@ h3 { font-size: 1.25rem; }
   position: absolute; width: 1px; height: 1px; overflow: hidden;
   clip: rect(0 0 0 0); white-space: nowrap;
 }
-.skip-link { position: absolute; left: -999px; top: 0; background: var(--sand); color: var(--ink); padding: 0.5rem 1rem; z-index: 10; font-family: var(--pixel); }
+.skip-link { position: absolute; left: -999px; top: 0; background: var(--sand); color: var(--ink); padding: 0.5rem 1rem; z-index: 10; }
 .skip-link:focus { left: 1rem; }
 
-/* ---------- Pixel typography ---------- */
+/* ---------- Typography ---------- */
 
-.section-title, .label, .brand, .site-nav a, .btn, .chip, .more, .pub-year__label, .person-card__name {
-  font-family: var(--pixel);
-}
+/* Pixel fonts are kept to the nav bar (Doto) and the page titles on the canal strip (Jersey 10);
+   everything else uses the serif. */
+.brand, .site-nav a { font-family: var(--pixel); }
 
 .section-title {
-  font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.2rem);
-  font-weight: 600;
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  font-weight: 650;
   color: var(--bark);
-  text-shadow: 3px 3px 0 var(--sand);
-  letter-spacing: 0.01em;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 4px;
+  margin-top: 0.4rem;
+  background: var(--sand);
 }
 .section-title a { color: inherit; text-decoration: none; }
 .section-title a:hover { color: var(--river-ink); }
 
 /* Sand letters with a bark outline, like the logo lettering */
 .logo-type {
-  font-family: var(--pixel);
-  font-weight: 700;
-  font-size: clamp(2.2rem, 1.4rem + 3.5vw, 4rem);
+  font-family: var(--title);
+  font-weight: 400;       /* Jersey 10 has one weight; don't let the browser fake a bold */
+  font-synthesis: none;
+  font-size: clamp(2.6rem, 1.6rem + 4vw, 4.6rem);
+  line-height: 1.05;
+  letter-spacing: 0.02em;
   color: var(--sand);
-  letter-spacing: 0.06em;
   text-shadow:
     -3px 0 0 var(--bark), 3px 0 0 var(--bark), 0 -3px 0 var(--bark), 0 3px 0 var(--bark),
     -3px -3px 0 var(--bark), 3px -3px 0 var(--bark), -3px 3px 0 var(--bark), 3px 3px 0 var(--bark),
@@ -88,17 +97,17 @@ h3 { font-size: 1.25rem; }
 
 .label {
   display: block;
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--ink-soft);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   margin: 0 0 0.35rem;
 }
 
 .more {
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -120,8 +129,9 @@ h3 { font-size: 1.25rem; }
 }
 .brand {
   color: var(--sand);
-  font-size: 1.45rem;
-  font-weight: 700;
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1;
   text-decoration: none;
   letter-spacing: 0.02em;
 }
@@ -130,8 +140,8 @@ h3 { font-size: 1.25rem; }
 .site-nav ul a {
   color: #f6e7c8;
   text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 1.05rem;
+  font-weight: 800;
   padding-block: 0.2rem;
   border-bottom: 3px solid transparent;
 }
@@ -160,7 +170,13 @@ h3 { font-size: 1.25rem; }
   padding-block: 3.2rem 2.8rem;
 }
 .page-header h1 { image-rendering: auto; }
-.logo-type--long { font-size: clamp(1.8rem, 1.3rem + 2vw, 2.8rem); }
+.logo-type--long {
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.2rem);
+  text-shadow:
+    -2px 0 0 var(--bark), 2px 0 0 var(--bark), 0 -2px 0 var(--bark), 0 2px 0 var(--bark),
+    -2px -2px 0 var(--bark), 2px -2px 0 var(--bark), -2px 2px 0 var(--bark), 2px 2px 0 var(--bark),
+    4px 4px 0 var(--bark);
+}
 
 .lede {
   font-size: 1.3rem;
@@ -176,7 +192,7 @@ h3 { font-size: 1.25rem; }
 
 .prose { max-width: 42rem; }
 .prose--large { font-size: 1.3rem; line-height: 1.55; }
-.prose h2, .prose h3 { font-family: var(--pixel); color: var(--bark); margin-top: 1.6em; }
+.prose h2, .prose h3 { font-weight: 650; color: var(--bark); margin-top: 1.6em; }
 .prose h3 { font-size: 1.4rem; }
 .prose li + li { margin-top: 0.3em; }
 
@@ -289,7 +305,7 @@ h3 { font-size: 1.25rem; }
 .pub__meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.55rem !important; }
 .pub__meta:empty { display: none; }
 .pub__abstract { margin-top: 0.6rem; font-size: 1rem; }
-.pub__abstract summary { cursor: pointer; font-family: var(--pixel); color: var(--river-ink); width: max-content; }
+.pub__abstract summary { cursor: pointer; font-weight: 600; color: var(--river-ink); width: max-content; }
 .pub__abstract p { margin-top: 0.5rem; max-width: 46rem; color: var(--ink-soft); }
 
 .pub-list--compact .pub__meta, .pub-list--compact .pub__abstract { display: none; }
@@ -323,7 +339,7 @@ h3 { font-size: 1.25rem; }
 .person-card img, .person-card__initials {
   width: 160px; height: 160px; border-radius: 50%; border: 3px solid var(--bark); margin-bottom: 0.9rem; object-fit: cover;
 }
-.person-card__initials { display: grid; place-items: center; background: var(--sky); font: 700 3.5rem var(--pixel); color: var(--bark); }
+.person-card__initials { display: grid; place-items: center; background: var(--sky); font: 700 3.5rem var(--serif); color: var(--bark); }
 .person-card__name { font-size: 1.3rem; font-weight: 600; color: var(--bark); }
 .person-card__role { font-size: 1rem; color: var(--ink-soft); }
 .people-cta { margin-top: 3rem; font-size: 1.15rem; }
@@ -331,7 +347,7 @@ h3 { font-size: 1.25rem; }
 .profile { display: grid; grid-template-columns: 17rem minmax(0, 1fr); gap: 3rem; align-items: start; }
 .profile__card { padding: 1.4rem; }
 .profile__photo { width: 100%; aspect-ratio: 1; border-radius: 50%; border: 3px solid var(--bark); margin-bottom: 1rem; }
-.profile__role { font-family: var(--pixel); font-size: 1.25rem; font-weight: 600; color: var(--bark); margin: 0 0 0.4rem; }
+.profile__role { font-size: 1.25rem; font-weight: 650; color: var(--bark); margin: 0 0 0.4rem; }
 .profile__affil, .profile__edu { list-style: none; padding: 0; margin: 0 0 1.1rem; font-size: 0.98rem; line-height: 1.45; color: var(--ink-soft); }
 .profile__affil li + li, .profile__edu li + li { margin-top: 0.4rem; }
 .profile__links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.4rem; }
@@ -348,7 +364,7 @@ h3 { font-size: 1.25rem; }
 .opening-card { padding: 1.4rem 1.6rem 1.5rem; scroll-margin-top: 1.5rem; }
 .opening-card__flag {
   display: inline-block;
-  font-family: var(--pixel); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
   background: var(--river-ink); color: #fff; padding: 0.25rem 0.55rem; margin-bottom: 0.8rem;
 }
 .opening-card h3 { font-size: 1.4rem; font-weight: 650; line-height: 1.3; color: var(--bark); margin-bottom: 0.6rem; }
@@ -393,7 +409,7 @@ h3 { font-size: 1.25rem; }
 .site-footer a:hover { color: var(--sand); }
 .site-footer__grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem 3rem; }
 .site-footer__grid p { margin: 0; line-height: 1.6; }
-.site-footer__name { font-family: var(--pixel); font-size: 1.35rem; font-weight: 700; color: var(--sand); margin-bottom: 0.4rem !important; }
+.site-footer__name { font-size: 1.3rem; font-weight: 700; color: var(--sand); margin-bottom: 0.4rem !important; }
 .site-footer__links { display: flex; flex-direction: column; gap: 0.3rem; align-items: flex-start; }
 .site-footer__copy { margin-top: 1.5rem; margin-bottom: 0; font-size: 0.9rem; color: #b8c2a8; }
 
@@ -411,8 +427,8 @@ h3 { font-size: 1.25rem; }
   .prose--large { font-size: 1.15rem; }
   .site-nav__inner { justify-content: center; }
   .site-nav__inner { padding-block: 0.6rem 0.4rem; gap: 0.25rem; }
-  .site-nav ul { justify-content: center; gap: 0.25rem 0.8rem; }
-  .site-nav ul a { font-size: 0.95rem; }
+  .site-nav ul { justify-content: center; gap: 0.25rem 0.7rem; }
+  .site-nav ul a { font-size: 0.8rem; }
   .page-header { padding-block: 2.2rem 2rem; background-size: auto 183px; }
   .section { padding-block: 2.5rem; }
   .join-band { padding-block: 3rem; }
