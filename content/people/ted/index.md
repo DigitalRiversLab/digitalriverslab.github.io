@@ -9,8 +9,6 @@ affiliations:
   - Department of Geology & Geophysics, University of Wyoming
 email: ted.langhorst@uwyo.edu # TODO: confirm UWyo address
 links:
-  - name: Website
-    url: https://tedlanghorst.github.io
   - name: Google Scholar
     url: https://scholar.google.com/citations?user=IltBbpcAAAAJ
   - name: GitHub
